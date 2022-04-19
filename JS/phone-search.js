@@ -17,7 +17,7 @@ const searchPhone = () =>{
       const searchResult = document.getElementById ('search-result');
       phones.forEach(phone => {
           const div = document.createElement('div');
-          console.log(phone)
+        //   console.log(phone)
           div.classList.add('col')
           div.innerHTML= `
           <div class="card">
@@ -27,10 +27,41 @@ const searchPhone = () =>{
             <p class="card-text"> Brand Name:
               ${phone.brand}
             </p>
-            <button> Details </button>
+            <button onclick="loadPhoneDetails('${phone.slug}')"> Details </button>
           </div>
         </div>
           `;
           searchResult.appendChild(div);
       })
+  }
+
+
+  const loadPhoneDetails = phoneId =>{
+  
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+    fetch (url)
+    .then (Response => Response.json())
+    .then (data => displayPhoneDetails (data.data))
+  }
+  const displayPhoneDetails = phoneDetail => {
+      console.log(phoneDetail)
+      const singlePhoneDetail = document.getElementById('phonedetail');
+      const div = document.createElement('div');
+      div.classList.add('card');
+      div.innerHTML = `
+      <div class="card-body">
+      <h3 class="card-title">${phoneDetail.name}</h3>
+      <p class="card-text">
+        ${phoneDetail.releaseDate ? phoneDetail.releaseDate:'No release date found'}
+      </p>
+      <h4>main features: </h4>
+      <p><b>memory:</b> ${phoneDetail.mainFeatures.memory}</p>
+      <p><b>displaySize:</b> ${phoneDetail.mainFeatures.displaySize}</p>
+      <p><b>chipSet:</b> ${phoneDetail.mainFeatures.chipSet}</p>
+    </div>
+    <h4>Sensor: </h4>
+    <p></p>
+
+      `;
+      singlePhoneDetail.appendChild(div)
   }
