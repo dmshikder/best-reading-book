@@ -15,6 +15,7 @@ const searchPhone = () =>{
 
   const displaySearchResult = phones => {
       const searchResult = document.getElementById ('search-result');
+      searchResult.textContent='';
       phones.forEach(phone => {
           const div = document.createElement('div');
         //   console.log(phone)
@@ -46,6 +47,7 @@ const searchPhone = () =>{
   const displayPhoneDetails = phoneDetail => {
       console.log(phoneDetail)
       const singlePhoneDetail = document.getElementById('phonedetail');
+      singlePhoneDetail.textContent='';
       const div = document.createElement('div');
       div.classList.add('card');
       div.innerHTML = `
@@ -60,7 +62,9 @@ const searchPhone = () =>{
       <p><b>chipSet:</b> ${phoneDetail.mainFeatures.chipSet}</p>
     </div>
     <h4>Sensor: </h4>
-    <p></p>
+    <p>${phoneDetail.mainFeatures.sensors}</p>
+    <h4>Others: </h4>
+    <p>Bluetooth: ${phoneDetail.others.Bluetooth ? phoneDetail.others.Bluetooth:'No'}</p>
 
       `;
       singlePhoneDetail.appendChild(div)
