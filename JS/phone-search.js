@@ -22,13 +22,13 @@ const searchPhone = () =>{
           div.classList.add('col')
           div.innerHTML= `
           <div class="card">
-          <img src="${phone.image}" class="card-img-top" alt="..." />
-          <div class="card-body">
+          <img class="w-75 mx-auto pt-4" src="${phone.image}" class="card-img-top" alt="..." />
+          <div class="card-body mx-auto">
             <h5 class="card-title">${phone.phone_name}</h5>
             <p class="card-text"> Brand Name:
               ${phone.brand}
             </p>
-            <button onclick="loadPhoneDetails('${phone.slug}')"> Details </button>
+            <button class="w-100 bg-primary text-white rounded" onclick="loadPhoneDetails('${phone.slug}')"> Details </button>
           </div>
         </div>
           `;
@@ -51,7 +51,7 @@ const searchPhone = () =>{
       const div = document.createElement('div');
       div.classList.add('card');
       div.innerHTML = `
-      <div class="card-body">
+      <div class="card-body mx-5 bg-info">
       <h3 class="card-title">${phoneDetail.name}</h3>
       <p class="card-text">
         ${phoneDetail.releaseDate ? phoneDetail.releaseDate:'No release date found'}
@@ -60,11 +60,12 @@ const searchPhone = () =>{
       <p><b>memory:</b> ${phoneDetail.mainFeatures.memory}</p>
       <p><b>displaySize:</b> ${phoneDetail.mainFeatures.displaySize}</p>
       <p><b>chipSet:</b> ${phoneDetail.mainFeatures.chipSet}</p>
-    </div>
-    <h4>Sensor: </h4>
+      <h4>Sensor: </h4>
     <p>${phoneDetail.mainFeatures.sensors}</p>
     <h4>Others: </h4>
-    <p>Bluetooth: ${phoneDetail.others.Bluetooth ? phoneDetail.others.Bluetooth:'No'}</p>
+    <p>Bluetooth: ${phoneDetail?.others?.Bluetooth ? phoneDetail.others.Bluetooth:'No'}</p>
+    </div>
+    
 
       `;
       singlePhoneDetail.appendChild(div)
