@@ -2,7 +2,7 @@ const loadPhone= (searchText)=>{
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
     .then(Response =>Response.json())
-    .then (data => displaySearchResult (data.data))
+    .then (data => displaySearchResult (data.data.slice(0,20)))
 }
 
 // phone db
